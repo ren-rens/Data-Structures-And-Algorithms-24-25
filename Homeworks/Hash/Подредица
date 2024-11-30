@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    long long N, M;
+    cin >> N >> M;
+
+    vector<long long> permutation(M);
+    set<long long> used;
+
+    for (int i = 0; i < M; ++i) 
+    {
+        cin >> permutation[i];
+        used.insert(permutation[i]);
+    }
+
+    vector<long long> missing;
+    for (long long i = 1; i <= N; ++i) 
+    {
+        if (used.find(i) == used.end()) 
+            missing.push_back(i);
+    }
+
+    vector<long long> result;
+    size_t missing_index = 0;
+
+    for (long long i = 0; i < M; ++i) 
+    {
+        while (missing_index < missing.size() && missing[missing_index] < permutation[i]) 
+        {
+            result.push_back(missing[missing_index]);
+            ++missing_index;
+        }
+        result.push_back(permutation[i]);
+    }
+
+    while (missing_index < missing.size()) 
+    {
+        result.push_back(missing[missing_index]);
+        ++missing_index;
+    }
+
+    for (size_t i = 0; i < result.size(); ++i) 
+    {
+        if (i > 0) 
+            cout << " ";
+        cout << result[i];
+    }
+    cout << endl;
+
+    return 0;
+}
