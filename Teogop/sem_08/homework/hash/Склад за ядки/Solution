@@ -1,0 +1,63 @@
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+void find_ind(const std::unordered_map<int, int>& mp, long long X, const std::vector<int>& v, long long N) 
+{
+    for (int i = 1; i < N + 1; i++) 
+    {
+        int res = X - v[i];
+        if (mp.count(res) && mp.at(res) != i) 
+        {
+            cout << min(mp.at(res), i) << ' ' << max(mp.at(res), i) << endl;
+            return;
+        }
+    }
+}
+
+int main() {
+    int T = 0;
+    cin >> T;
+
+    for (int i = 0; i < T; i++) 
+    {
+        long long X = 0;
+        cin >> X;
+
+        long long N = 0;
+        cin >> N;
+
+        std::unordered_map<int, int> mp;
+        std::vector<int> v(N + 1);
+
+        for (int j = 1; j < N + 1; j++) 
+        {
+            cin >> v[j];
+            mp[v[j]] = j;
+        }
+
+        find_ind(mp, X, v, N);
+    }
+    return 0;
+}
