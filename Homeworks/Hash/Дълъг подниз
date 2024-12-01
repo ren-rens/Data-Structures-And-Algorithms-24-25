@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    std::string str1, str2;
+    cin >> str1 >> str2;
+
+    size_t res = 0, cur_max = 0;
+
+    for(size_t i = 0; i < str1.size(); ++i)
+    {
+        size_t idxI = i;
+        size_t j = 0;
+        
+        cur_max = 0;
+        
+        while(idxI < str1.size() && j < str2.size())
+        {
+            if(str1[idxI] != str2[j])
+                cur_max = 0;
+            else
+            {
+                ++cur_max;
+                res = std::max(res, cur_max);
+            }
+            ++idxI;
+            ++j;
+        }
+    }
+
+    cout << res;
+
+    return 0;
+}
