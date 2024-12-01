@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <map>
+using namespace std;
+
+int main() 
+{
+    std::map<string, long long> mp1;
+
+    long long test;
+    cin >> test;
+    
+    for (long long i = 0; i < test; i++) 
+    {
+        long long size1, size2;
+        cin >> size1 >> size2;
+        
+        for (long long j = 0; j < size1; j++) 
+        {
+            string str;
+            cin >> str;
+            mp1[str]++;
+        }
+        
+        bool res = true;
+        for(long long j = 0; j < size2; j++)
+        {
+            string str;
+            cin >> str;
+            if(mp1[str] == 0)
+                res = false;
+            
+            mp1[str]--;
+        }
+        
+
+        cout << (res ? "Yes\n" : "No\n");
+    }
+    return 0;
+}
