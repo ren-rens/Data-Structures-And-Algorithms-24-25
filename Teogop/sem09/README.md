@@ -11,3 +11,5 @@ K-th Largest Element in an Array: https://leetcode.com/problems/kth-largest-elem
 # Harder:
 
 Jess and Cookies: https://www.hackerrank.com/challenges/jesse-and-cookies/problem
+
+GYM: https://www.hackerrank.com/contests/sda-test4-2022-2023-343rrsdfs/challenges/challenge-3768/submissions/code/1386267621
