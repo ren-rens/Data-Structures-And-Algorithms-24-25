@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+struct Edge{
+    int from, to, weight;
+};
+
+int bellman_ford(const std::vector<Edge>& graph, int n, int m, int s, int t){
+    std::vector<int> distances(n + 1, INT_MIN);
+    distances[s] = 0;
+    
+    for(int i = 0; i < n; i++){
+        for(int i = 0; i < m; i++) {
+            auto& edge = graph[i];
+            distances[edge.to] = max(distances[edge.to], distances[edge.from] + edge.weight);
+        }
+    }
+    
+    return distances[t] == INT_MIN? -1 : distances[t];
+}
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n, m, s, t;
+    std:: cin >> n >> m >> s >> t;
+    
+    std::vector<Edge> graph;
+    
+    for(int i = 0; i < m; i++){
+        int v1, v2, w;
+        std::cin >> v1 >> v2 >> w;
+        
+        graph.push_back({v1, v2, w});
+    }
+    
+    std::cout << bellman_ford(graph, n, m, s, t);
+    
+    return 0;
+}
