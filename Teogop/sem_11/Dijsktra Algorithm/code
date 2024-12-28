@@ -10,7 +10,7 @@ struct Edge {
 struct Node {
 	int index, distance;
 
-	bool operator<(const Node& other) {
+	bool operator<(const Node& other) const{
 		return distance > other.distance;
 	}
 };
