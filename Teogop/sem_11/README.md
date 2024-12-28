@@ -1,3 +1,3 @@
 # Dijkstra
-#### Network Delay Time
+### Network Delay Time
 https://leetcode.com/problems/network-delay-time/description/
