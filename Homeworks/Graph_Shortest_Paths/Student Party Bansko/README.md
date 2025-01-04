@@ -29,13 +29,21 @@
 ## Samples
 ### Sample Input 0
 5 6 0 3
+
 4 5 12 10 20
+
 0 1 10
+
 0 4 3
+
 1 2 8
+
 2 3 6
+
 4 2 7
+
 4 3 18
+
 ### Sample Output 0
 30
 ### Explanation 0
