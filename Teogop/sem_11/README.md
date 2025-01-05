@@ -9,6 +9,10 @@ https://leetcode.com/problems/path-with-maximum-probability/description/
 ### Minimum Obstacles Removeal to Reach Corner
 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/description/
 
+### Analog to MORRC
+* https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/description/
+* https://leetcode.com/problems/path-with-minimum-effort/description/
+
 # Bellman-Ford
 ### Long Long
 https://www.hackerrank.com/contests/sda-hw-11/challenges/long-long/submissions/code/1386962951
