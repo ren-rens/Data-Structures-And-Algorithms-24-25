@@ -5,8 +5,10 @@ Return the minimum cost to make all points connected. All points are connected i
 
 # Examples
 ### Example 1:
-Input: points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
-Output: 20
+Input: 
+* points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+Output: 
+* 20
 
 ### Explanation: 
 We can connect the points as shown above to get the minimum cost of 20.
