@@ -1,0 +1,114 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Edge {
+	int from, to, weight;
+};
+
+struct UnionFind
+{
+public:
+	UnionFind(int verticles) : parents(verticles), sizes(verticles)
+	{
+		for (int i = 0; i < verticles; i++) {
+			parents[i] = i;
+			sizes[i] = 1;
+		}
+	}
+
+	bool inOneComponent(int first, int second) {
+		return getParent(first) == getParent(second);
+	}
+
+	void uniteComponents(int first, int second) {
+		int parentFirst = getParent(first);
+		int parentSecond = getParent(second);
+
+		if (parentFirst == parentSecond) {
+			return;
+		}
+
+		if (sizes[parentFirst] < sizes[parentSecond]) {
+			std::swap(parentFirst, parentSecond);
+		}
+
+		parents[parentSecond] = parentFirst;
+		sizes[parentFirst] += sizes[parentSecond];
+	}
+private:
+	std::vector<int> parents;
+	std::vector<int> sizes;
+
+	int getParent(int child) {
+		if (parents[child] == child) {
+			return child;
+		}
+
+		return parents[child] = getParent(parents[child]);
+	}
+};
+
+class Solution {
+public:
+	int minCostToSupplyWater(int n, const vector<int>& wells, const vector<vector<int>>& pipes) {
+		fillGraph(wells, pipes);
+
+		return kruskal(n);
+	}
+private:
+	std::vector<Edge> graph;
+
+	void fillGraph(const vector<int>& wells, const vector<vector<int>>& pipes) {
+		for (const auto& pipe : pipes) {
+			graph.push_back({ pipe[0], pipe[1], pipe[2] });
+			graph.push_back({ pipe[1], pipe[0], pipe[2] });
+		}
+
+		int dummyNode = 0;
+
+		for (int i = 0; i < wells.size(); i++) {
+			graph.push_back({ dummyNode ,i + 1 , wells[i] });
+			graph.push_back({ i + 1, dummyNode, wells[i] });
+		}
+	}
+
+	int kruskal(int n) {
+		std::sort(graph.begin(), graph.end(),
+			[](const Edge& lhs, const Edge& rhs) {
+				return lhs.weight < rhs.weight;
+			});
+
+		UnionFind uf(n + 1);
+		int components = n + 1;
+
+		int size = graph.size();
+		int result = 0;
+
+		for (int i = 0; i < size; i++) {
+			if (uf.inOneComponent(graph[i].from, graph[i].to)) {
+				continue;
+			}
+
+			uf.uniteComponents(graph[i].from, graph[i].to);
+			result += graph[i].weight;
+			components--;
+
+			if (components == 1) {
+				break;
+			}
+		}
+
+		return result;
+	}
+};
+
+int main() {
+  // for example :)
+	Solution s;
+	std::vector<int> wells = { 1, 2, 2 };
+	std::vector<std::vector<int>> pipes = { {1, 2, 1}, {2, 3, 1} };
+	std::cout << s.minCostToSupplyWater(3, wells, pipes);
+}
