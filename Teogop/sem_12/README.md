@@ -7,3 +7,5 @@
 # Kruskal
 ### Kruskal (MST) : Really Special Subtree
 * https://www.hackerrank.com/challenges/kruskalmstrsub/problem
+### Optimize Water Supplies
+* int my Visual Studio 😉
