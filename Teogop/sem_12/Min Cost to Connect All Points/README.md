@@ -7,6 +7,7 @@ Return the minimum cost to make all points connected. All points are connected i
 ### Example 1:
 Input: 
 * points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+
 Output: 
 * 20
 
