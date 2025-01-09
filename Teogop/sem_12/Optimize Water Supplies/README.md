@@ -15,10 +15,15 @@ The best strategy is to build a well in the first house with cost 1 and connect 
 
 # Constraints:
 1 <= n <= 10000
-wells.length == n
-0 <= wells[i] <= 10^5
-1 <= pipes.length <= 10000
-1 <= pipes[i][0], pipes[i][1] <= n
-0 <= pipes[i][2] <= 10^5
-pipes[i][0] != pipes[i][1]
 
+wells.length == n
+
+0 <= wells[i] <= 10^5
+
+1 <= pipes.length <= 10000
+
+1 <= pipes[i][0], pipes[i][1] <= n
+
+0 <= pipes[i][2] <= 10^5
+
+pipes[i][0] != pipes[i][1]
