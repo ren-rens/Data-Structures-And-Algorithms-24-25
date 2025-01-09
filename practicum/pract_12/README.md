@@ -2,6 +2,9 @@
 ### Cleaning
 * https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2801/submissions/code/1387247409
 
+### Speed
+* https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2799
+
 # Prim
 ### Min Cost to Connect All Points
 * Teogop/sem_12/Min Cost to Connect All Points
