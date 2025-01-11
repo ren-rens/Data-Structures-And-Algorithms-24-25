@@ -1,0 +1,81 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+using namespace std;
+
+struct UnionFind{
+public:
+    UnionFind(int v) : parents(v) , sizes(v, 1){
+        for(int i = 0; i < v; i++){
+            parents[i] = i;
+        }
+    }
+    
+    bool inOneComponent(int first, int second){
+        return getParent(first) == getParent(second);
+    }
+    
+    void unite(int first, int second){
+        int parentFirst = getParent(first);
+        int parentSecond = getParent(second);
+        
+        if(parentFirst == parentSecond){
+            return;
+        }
+        
+        if(sizes[parentFirst] < sizes[parentSecond]){
+            std::swap(parentFirst, parentSecond);
+        }
+        
+        parents[parentSecond] = parentFirst;
+        
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+private:
+    std::vector<int> parents, sizes;
+    
+    int getParent(int child){
+        if(child == parents[child]){
+            return child;
+        }
+        
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    long long N, M;
+    std::cin >> N >> M;
+    UnionFind uf(N);
+    
+    std::unordered_map<long long, std::unordered_set<int>> graph;
+    for(long long i = 0; i < M; i++){
+        long long x, y;
+        std::cin >> x >> y;
+        
+        if(uf.inOneComponent(x, y)){
+            continue;
+        }
+        
+        uf.unite(x, y);
+    }
+    
+    long long K;
+    std::cin >> K;
+    
+    for(long long k = 0; k < K; k++){
+        long long x, y;
+        std::cin >> x >> y;
+        
+        std::cout << uf.inOneComponent(x, y) << ' ';
+    }
+    
+    return 0;
+}
