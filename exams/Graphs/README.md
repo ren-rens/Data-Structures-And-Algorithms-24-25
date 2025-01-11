@@ -9,3 +9,7 @@ Using Dijkstra
 
 # Проверка на път
 * https://www.hackerrank.com/contests/sda-test6-2022-2023-iythgbeu3/challenges/challenge-3826/submissions/code/1387293999
+
+# Преброяване на области
+* kruskal: https://www.hackerrank.com/contests/sda-test6-2022-2023-iythgbeu3/challenges/challenge-2351/submissions/code/1387294995
+* dfs: https://www.hackerrank.com/contests/sda-test6-2022-2023-iythgbeu3/challenges/challenge-2351/submissions/code/1386635967
