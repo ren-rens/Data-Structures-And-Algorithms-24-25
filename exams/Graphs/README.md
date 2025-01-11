@@ -5,3 +5,4 @@ Using kruskal
 # Shortest Paths
 Using Dijkstra
 * https://www.hackerrank.com/contests/6-20232024/challenges/shortest-paths-2/submissions/code/1387292234
+* pract_11
