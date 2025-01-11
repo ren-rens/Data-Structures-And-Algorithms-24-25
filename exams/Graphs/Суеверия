@@ -1,0 +1,81 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std;
+
+struct Edge{
+    int to, weight;
+};
+
+int N, M;
+std::unordered_map<int, std::vector<Edge>> edges;
+
+bool isFound(std::vector<Edge>& current, const std::unordered_set<int>& forbidden, const std::vector<int>& path, int i){
+     for(long unsigned int j = 0; j < current.size(); j++){
+        if(current[j].to == path[i + 1] && forbidden.count(current[j].weight) == 0){
+            return true;
+        }
+    }
+    return false;
+}
+
+int isPossible(const std::unordered_set<int>& forbidden, const std::vector<int>& path, int size){    
+    for(int i = 0; i < size - 1; i++){
+        auto current = edges[path[i]];
+        
+        if(!isFound(current, forbidden, path, i)){
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    std::cin >> N >> M;
+    
+    for(int i = 0; i < N; i++){
+        edges[i];
+    }
+    
+    for(int i = 0; i < M; i++){
+        int x,y,w;
+        std::cin >> x >> y >> w;
+        
+        edges[x].push_back({y, w});
+    }
+    
+    int K;
+    std::cin >> K;
+    
+    std::unordered_set<int> forbidden(K);
+    for(int i = 0; i < K; i++){
+        int forbid;
+        std::cin >> forbid;
+        
+        forbidden.insert(forbid);
+    }
+    
+    int T;
+    std::cin >> T;
+    for(int i = 0; i < T; i++){
+        int count;
+        std::cin >> count;
+        
+        std::vector<int> path(count);
+        for(int j = 0; j < count; j++){
+            std::cin >> path[j];
+        }
+        
+        std::cout << isPossible(forbidden, path, count);
+    }
+    return 0;
+}
