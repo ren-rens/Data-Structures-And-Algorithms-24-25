@@ -17,3 +17,6 @@ Using Dijkstra
 # Път в граф
 * kruskal: https://www.hackerrank.com/contests/sda-2021-2022-test-6-christmas/challenges/challenge-2852/submissions/code/1387296014
 * може и с dfs
+
+# Суеверия
+* Даже не знам какво измислено обхождане е това: https://www.hackerrank.com/contests/sda-2021-2022-test-7-final/challenges/challenge-2817/submissions/code/1387299037
