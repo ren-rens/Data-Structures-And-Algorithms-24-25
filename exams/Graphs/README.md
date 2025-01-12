@@ -38,3 +38,6 @@ Using Dijkstra
 
 # Зелено Училище
 * bfs: https://www.hackerrank.com/contests/sda-2019-2020-test-5/challenges/challenge-2299/submissions/code/1387304978
+
+# Поръчки и доставки 2
+* bfs: https://www.hackerrank.com/contests/sda-test-5/challenges/2-61/submissions/code/1387305416
