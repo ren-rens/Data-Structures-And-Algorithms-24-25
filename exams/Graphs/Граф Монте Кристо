@@ -1,0 +1,84 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std;
+
+std::unordered_map<int, std::unordered_set<int>> graph;
+int V, E;
+
+void fillGraph(){
+    for(int j = 0; j < V; j++){
+        graph[j];
+    }
+                
+    for(int j = 0; j < E; j++){
+        int x, y, w;
+        std::cin >> x >> y >> w;
+        
+        graph[x].insert(y);
+    }
+}
+
+bool dfs(int current, std::unordered_map<int, char>& visited){
+    visited[current] = 'o';
+    
+    for(const auto& neighbour : graph[current]){
+        if(visited[neighbour] == 'c'){
+            continue;
+        }
+        
+        if(visited[neighbour] == 'o'){
+            return true;
+        }
+        
+        if(dfs(neighbour, visited)){
+            return true;
+        }
+    }
+    
+    visited[current] = 'c';
+    return false;
+}
+
+int hasCycle(){
+    std::unordered_map<int, char> visited;
+    
+    for(auto iter = graph.cbegin(); iter != graph.cend(); iter++){
+        if(visited.count(iter->first) != 0){
+            continue;
+        }
+        if(dfs(iter->first, visited)){
+            return 1;
+        }
+    }
+    
+    visited.clear();
+    
+    return 0;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int N; 
+    std::cin >> N;
+    
+    for(int i = 0; i < N; i++){
+        std::cin >> V >> E;
+        
+        fillGraph();
+        
+        std::cout << hasCycle();
+        
+        graph.clear();
+    }
+    
+    return 0;
+}
