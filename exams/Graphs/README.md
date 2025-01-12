@@ -26,3 +26,6 @@ Using Dijkstra
 
 # Граф Монте Кристо
 * dfs find cycle: https://www.hackerrank.com/contests/sda-2020-2021-test11-43ed5rf/challenges/challenge-2805/submissions/code/1387303629
+
+# Еконт
+* dijkstra: https://www.hackerrank.com/contests/test6sda-renfuvidbviw/challenges/challenge-2326/submissions/code/1387304017
