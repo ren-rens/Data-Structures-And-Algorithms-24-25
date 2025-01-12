@@ -1,0 +1,84 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <queue>
+#include <climits>
+using namespace std;
+
+struct Edge{
+    long long to, weight;
+};
+
+struct Node{
+    long long index, distance;
+    
+    bool operator<(const Node& other) const{
+        return distance > other.distance;
+    }
+};
+
+std::unordered_map<long long, std::vector<Edge>> graph;
+long long N, M;
+
+std::vector<long long> dijkstra(long long start){
+    std::priority_queue<Node> pq;
+    pq.push({start, 0});
+    
+    std::vector<long long> distances(N + 1, LLONG_MAX);
+    distances[start] = 0;
+    
+    while(!pq.empty()){
+        auto current = pq.top();
+        pq.pop();
+        
+        if(current.distance > distances[current.index]){
+            continue;
+        }
+        
+        for(const auto& edge : graph[current.index]){
+            long long newWeight = edge.weight + current.distance;
+            
+            if(newWeight < distances[edge.to]){
+                distances[edge.to] = newWeight;
+                
+                pq.push({edge.to, newWeight});
+            }
+        }
+    }
+    
+    return distances;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    std::cin >> N >> M;
+    
+    for(long long i = 0; i < M; i++){
+        long long u, v, w;
+        std::cin >> u >> v >> w;
+        
+        graph[u].push_back({v, w});
+        graph[v].push_back({u, w});
+    }
+    
+    long long start;
+    std::cin >> start;
+    
+    std::vector<long long> distances = dijkstra(start);
+    
+    for(long long i = 1; i < distances.size(); i++){
+        if(i == start){
+            continue;
+        }
+        if(distances[i] == LLONG_MAX){
+            std::cout << -1 << ' ';
+            continue;
+        }
+        std::cout << distances[i] << ' ';
+    }
+    
+    return 0;
+}
