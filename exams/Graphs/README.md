@@ -32,3 +32,6 @@ Using Dijkstra
 
 # Почивка
 * dijkstra: https://www.hackerrank.com/contests/test6-sda/challenges/challenge-1760/submissions/code/1387304205
+
+# Помощникът на Дядо Коледа
+* kruskal: https://www.hackerrank.com/contests/5-2023-2024/challenges/challenge-4506/submissions/code/1387304498
