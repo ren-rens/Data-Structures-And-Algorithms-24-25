@@ -23,3 +23,6 @@ Using Dijkstra
 
 # Агенция Пътна Инфраструктура
 * dfs: https://www.hackerrank.com/contests/test7-sda-soft-eng/challenges/challenge-1771/submissions/code/1387303242
+
+# Граф Монте Кристо
+* dfs find cycle: https://www.hackerrank.com/contests/sda-2020-2021-test11-43ed5rf/challenges/challenge-2805/submissions/code/1387303629
