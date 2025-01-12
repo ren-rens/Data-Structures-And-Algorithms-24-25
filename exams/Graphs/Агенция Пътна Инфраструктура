@@ -1,0 +1,74 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+
+struct Edge{
+    int to, weight;
+};
+
+std::unordered_map<int, std::vector<Edge>> graph;
+std::unordered_map<int, int> result;
+std::unordered_map<int, bool> visited;
+int N, M, K;
+
+void input(){
+    std::cin >> N >> M;
+    
+    int from, to, weight;
+    for(int i = 0; i < M; i++){
+        std::cin >> from >> to >> weight;
+        
+        graph[from].push_back({to, weight});
+    }
+    
+    std::cin >> K;
+}
+
+void dfs(int current, int depth, int currentSum){
+    if(K == depth){
+        result[currentSum]++;
+        return;
+    }
+    
+    visited[current] = true;
+    
+    for(auto& neighbour : graph[current]){
+        if(visited[neighbour.to]){
+            continue;
+        }
+        dfs(neighbour.to, depth + 1, neighbour.weight + currentSum);
+    }
+    
+    visited[current] = false;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    input();
+    
+    for(int i = 0; i <= N; i++){
+        visited.clear();
+        
+        dfs(i, 0, 0);
+    }
+    
+    int maxK = 0;
+    int res = -1;
+    
+    for(const auto& element : result){
+        if(element.second > maxK || (element.second == maxK && element.first > res)){
+            maxK = element.second;
+            res = element.first;
+        }
+    }
+    
+    std::cout << res;
+    
+    return 0;
+}
