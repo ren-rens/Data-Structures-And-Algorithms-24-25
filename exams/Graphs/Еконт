@@ -1,0 +1,86 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <climits>
+using namespace std;
+
+struct Edge{
+    long unsigned int to, weight;
+};
+
+struct Node{
+    long unsigned int index, distance;
+    
+    bool operator<(const Node& other) const{
+        return distance > other.distance;
+    }
+};
+
+std::unordered_map<long unsigned int, std::vector<Edge>> edges;
+
+std::vector<long unsigned int> dijkstra(long unsigned int start, long unsigned int N){
+    std::vector<long unsigned int> result(N + 1, INT_MAX);
+    
+    std::priority_queue<Node> pq;
+    pq.push({start, 0});
+    
+    result[start] = 0;
+    
+    while(!pq.empty()){
+        auto current = pq.top();
+        pq.pop();
+        
+        if(result[current.index] < current.distance){
+            continue;
+        }
+        
+        for(const auto& neighbour : edges[current.index]){
+            long unsigned int newWeight = current.distance + neighbour.weight;
+            
+            if(newWeight < result[neighbour.to]){
+                result[neighbour.to] = newWeight;
+                
+                pq.push({neighbour.to, newWeight});
+            }
+        }
+    }
+    
+    return result;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    long unsigned int N, M;
+    std::cin >> N >> M;
+    
+    long unsigned int u, v, w;
+    for(long unsigned int i = 0; i < M; i++){
+        std::cin >> u >> v >> w;
+        
+        edges[u].push_back({v, w});
+        edges[v].push_back({u, w});
+    }
+    
+    long unsigned int start;
+    std::cin >> start;
+    
+    std::vector<long unsigned int> result = dijkstra(start, N);
+        
+    for(long unsigned int i = 1; i < result.size(); i++){
+        if(i == start){
+            continue;
+        }
+        if(result[i] == INT_MAX){
+            std::cout << -1 << ' ';
+            continue;
+        }
+        std::cout << result[i] << ' ';
+    }
+    
+    return 0;
+}
