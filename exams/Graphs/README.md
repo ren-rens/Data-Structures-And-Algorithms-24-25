@@ -29,3 +29,6 @@ Using Dijkstra
 
 # Еконт
 * dijkstra: https://www.hackerrank.com/contests/test6sda-renfuvidbviw/challenges/challenge-2326/submissions/code/1387304017
+
+# Почивка
+* dijkstra: https://www.hackerrank.com/contests/test6-sda/challenges/challenge-1760/submissions/code/1387304205
