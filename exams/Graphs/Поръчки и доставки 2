@@ -1,0 +1,79 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <climits>
+using namespace std;
+
+std::unordered_map<long long, std::unordered_set<long long>> graph;
+const long long MAX_SIZE = 100001;
+
+std::vector<long long> bfs(){
+    std::vector<long long> result(MAX_SIZE, LLONG_MAX);
+    
+    std::queue<long long> q;
+    q.push(0);
+    
+    std::unordered_set<long long> visited;
+    visited.insert(0);
+    
+    int level = 0;
+    
+    while(!q.empty()){
+        long long size = q.size();
+        
+        for(long long i = 0; i < size; i++){
+            long long current = q.front();
+            q.pop();
+            
+            result[current] = level;
+            
+            for(const auto& neighbour : graph[current]){
+                if(visited.count(neighbour) != 0){
+                    continue;
+                }
+                
+                q.push(neighbour);
+                visited.insert(neighbour);
+            }
+        }
+        level++;
+    }
+    
+    for(long long i = 0; i < MAX_SIZE; i++){
+        if(result[i] == LLONG_MAX){
+            result[i] = 0;
+        }
+    }
+    
+    return result;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    long long K;
+    std::cin >> K;
+    
+    long long x, y;
+    for(long long i = 0; i < K; i++){
+        std::cin >> x >> y;
+        
+        graph[x].insert(y);
+        graph[y].insert(x);
+    }
+    
+    std::vector<long long> res = bfs();
+    
+    long long sum = 0;
+    for(const auto& el : res){
+        sum += el;
+    }
+    
+    std::cout << sum;
+    
+    return 0;
+}
