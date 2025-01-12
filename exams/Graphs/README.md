@@ -35,3 +35,6 @@ Using Dijkstra
 
 # Помощникът на Дядо Коледа
 * kruskal: https://www.hackerrank.com/contests/5-2023-2024/challenges/challenge-4506/submissions/code/1387304498
+
+# Зелено Училище
+* bfs: https://www.hackerrank.com/contests/sda-2019-2020-test-5/challenges/challenge-2299/submissions/code/1387304978
