@@ -1,4 +1,7 @@
 # Sorting Algorithms
+
+## Бавни алгоритми
+
 ### Bubble Sort
 Stable
 
