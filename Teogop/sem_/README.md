@@ -7,3 +7,9 @@ Insert into a Binary Search Tree:
 
 Delete Node in a BST:
 https://leetcode.com/problems/delete-node-in-a-bst/submissions/1517833711/
+
+Traversal:
+* level order: https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/1517834930/
+* postorder: https://leetcode.com/problems/binary-tree-postorder-traversal/submissions/1517837429/
+* preorder: https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+* inorder: https://leetcode.com/problems/binary-tree-inorder-traversal/submissions/1517839585/
