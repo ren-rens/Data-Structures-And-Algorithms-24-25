@@ -28,3 +28,6 @@ Binary Tree Right View:
 
 Trim Binary Search Tree:
 * https://leetcode.com/problems/trim-a-binary-search-tree/submissions/1517924534/
+
+Convert BST to Greater Tree:
+* https://leetcode.com/problems/convert-bst-to-greater-tree/submissions/1517940927/
