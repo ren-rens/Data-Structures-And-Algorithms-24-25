@@ -25,3 +25,6 @@ Range Sum of BST:
 
 Binary Tree Right View:
 * https://leetcode.com/problems/binary-tree-right-side-view/submissions/1517848161/
+
+Trim Binary Search Tree:
+* https://leetcode.com/problems/trim-a-binary-search-tree/submissions/1517924534/
