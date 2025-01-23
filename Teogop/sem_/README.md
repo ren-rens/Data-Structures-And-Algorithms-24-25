@@ -19,3 +19,6 @@ IsSameTree:
 
 Symmetric Tree:
 * https://leetcode.com/problems/symmetric-tree/submissions/1517844764/
+
+Range Sum of BST: 
+* https://leetcode.com/problems/range-sum-of-bst/submissions/1517847033/
