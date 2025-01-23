@@ -16,3 +16,6 @@ Traversal:
 
 IsSameTree:
 * https://leetcode.com/problems/same-tree/submissions/1517841094/
+
+Symmetric Tree:
+* https://leetcode.com/problems/symmetric-tree/submissions/1517844764/
