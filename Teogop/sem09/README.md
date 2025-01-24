@@ -15,3 +15,5 @@ Jess and Cookies: https://www.hackerrank.com/challenges/jesse-and-cookies/proble
 GYM: https://www.hackerrank.com/contests/sda-test4-2022-2023-343rrsdfs/challenges/challenge-3768/submissions/code/1386267621
 
 Merge k-sorted Lists: https://leetcode.com/problems/merge-k-sorted-lists/submissions/1480491815/
+
+Магазин за баници: https://www.hackerrank.com/contests/sda-hw-8-2022/challenges/fullstack-developer/submissions
