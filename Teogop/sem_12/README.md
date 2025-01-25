@@ -9,3 +9,5 @@
 * https://www.hackerrank.com/challenges/kruskalmstrsub/problem
 ### Optimize Water Supplies
 * int my Visual Studio 😉
+### Find Critical and Pseudo-Critical Edges in MST:
+* https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/submissions/1519962237/
