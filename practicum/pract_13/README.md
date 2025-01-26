@@ -9,3 +9,6 @@
 
 # Свързан списък
 * [Linked Numbers](https://www.hackerrank.com/contests/exam-2022-part2-sda/challenges/linked-numbers/submissions/code/1387722231)
+
+# Stack, Queue, Deque
+* [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/?envType=problem-list-v2&envId=heap-priority-queue)
