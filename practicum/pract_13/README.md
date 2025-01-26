@@ -4,3 +4,5 @@
 
 # Binary Search
 * [Двоично търсене](https://www.hackerrank.com/contests/sda-ttest-2/challenges/challenge-1636/submissions/code/1387715803)
+* [Намиране на елемент](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/find-element-sda/submissions/code/1387718352)
+* 
