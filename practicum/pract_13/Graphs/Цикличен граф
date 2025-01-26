@@ -1,0 +1,76 @@
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <unordered_map>
+#include <unordered_set>
+#include <string>
+
+std::unordered_map<long long, std::unordered_set<long long>> graph;
+
+void input() {
+    long long N, M;
+    std::cin >> N >> M;
+    
+    for(long long j = 1; j <= N; j++) {
+            graph[j];
+    }
+    
+    long long v1, v2, w;
+    for(long long i = 0; i < M; i++) {
+        std::cin >> v1 >> v2 >> w;
+        
+        graph[v1].insert(v2);
+    }
+}
+
+bool dfs(std::unordered_map<long long, char>& colours, long long current) {
+    colours[current] = 'o';
+    
+    for(const auto& nb : graph[current]) {
+        if(colours[nb] == 'c') {
+            continue;
+        }
+        if(colours[nb] == 'o') {
+            return true;
+        }
+        if(dfs(colours, nb)) {
+            return true;
+        }
+    }
+    
+    colours[current] = 'c';
+    
+    return false;
+}
+
+std::string hasCycle() {
+    std::unordered_map<long long, char> colours;
+    
+    for(auto iter = graph.begin(); iter != graph.end(); iter++) {
+        if(colours.count(iter->first) != 0) {
+            continue;
+        }
+        if(dfs(colours, iter->first)) {
+            return "true ";
+        }
+    }
+    
+    return "false ";
+}
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    
+    long long tests;
+    std::cin >> tests;
+    
+    while(tests--) {
+        graph.clear();
+        input();
+        
+        std::cout << hasCycle();
+    }
+    
+    return 0;
+}
