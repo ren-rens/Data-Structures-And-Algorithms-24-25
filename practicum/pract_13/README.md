@@ -13,3 +13,6 @@
 # Stack, Queue, Deque
 * [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/?envType=problem-list-v2&envId=heap-priority-queue)
 Решавана е на практикум
+
+# Tree
+* [Профил на дърво](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/challenge-2352/submissions/code/1387724858)
