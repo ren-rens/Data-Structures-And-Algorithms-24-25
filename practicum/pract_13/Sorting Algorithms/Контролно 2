@@ -1,0 +1,59 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+void input(long long size, std::vector<long long>& arr) {
+    for(long long i = 0; i < size; i++) {
+        std::cin >> arr[i];
+    }
+}
+
+void fillSet(std::vector<long long>& arr, std::unordered_set<long long>& set) {
+    for(const auto& element : arr) {
+        set.insert(element);
+    }
+}
+
+long long getSummaryOfUniqueNumbers(std::unordered_set<long long>& f, std::unordered_set<long long>& s) {
+    long long sum = 0;
+    
+    for(const auto& element : f) {
+        if(s.count(element) == 0) {
+            continue;
+        }
+        
+        sum += element;
+    }
+    
+    return sum;
+}
+
+void solve(std::vector<long long>& first, std::vector<long long>& second) {
+    std::unordered_set<long long> f, s;
+    
+    fillSet(first, f);
+    fillSet(second, s);
+    
+    std::cout << getSummaryOfUniqueNumbers(f, s);
+}
+
+int main() {
+    long long N, M;
+    std::cin >> N;
+    
+    std::vector<long long> first(N);
+    input(N, first);
+    
+    std::cin >> M;
+    
+    std::vector<long long> second(M);
+    input(M, second);
+    
+    solve(first, second);
+    
+    return 0;
+}
