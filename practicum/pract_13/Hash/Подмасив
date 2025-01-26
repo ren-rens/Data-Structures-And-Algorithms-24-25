@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+long long longestSubArray(std::vector<long long>& nums, long long N) {
+    std::unordered_set<long long> longest;
+    long long start = 0;
+    long long maxSubArray = 0, currentMax = 0;
+    
+    for(long long i = 0; i < N; i++) {
+        while(longest.count(nums[i]) != 0) {
+            longest.erase(nums[start]);
+            start++;
+            
+            currentMax--;
+        }
+        
+        longest.insert(nums[i]);
+        currentMax++;
+        
+        maxSubArray = std::max(maxSubArray, currentMax);
+    }
+    
+    return maxSubArray;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    long long N;
+    std::cin >> N;
+    
+    std::vector<long long> nums(N);
+    for(long long i = 0; i < N; i++) {
+        std::cin >> nums[i];
+    }
+    
+    std::cout << longestSubArray(nums, N);
+    return 0;
+}
