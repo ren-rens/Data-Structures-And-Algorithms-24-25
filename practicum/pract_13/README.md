@@ -24,3 +24,4 @@
 
 # Graphs
 * [Пътна карта на Дядо Коледа](https://www.hackerrank.com/contests/sda-2020-2021-test9-wefnkcsdw/challenges/challenge-2762/submissions/code/1387726561)
+* [Цикличен граф](https://www.hackerrank.com/contests/sda-exam-27-01-19-/challenges/-1-12/submissions/code/1387726881)
