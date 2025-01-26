@@ -12,3 +12,4 @@
 
 # Stack, Queue, Deque
 * [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/?envType=problem-list-v2&envId=heap-priority-queue)
+Решавана е на практикум
