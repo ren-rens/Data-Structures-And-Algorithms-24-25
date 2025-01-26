@@ -3,4 +3,4 @@
 * [Контролно 2](https://www.hackerrank.com/contests/sda-2020-2021-test1/challenges/1-257/submissions/code/1387715273)
 
 # Binary Search
-* 
+* [Двоично търсене](https://www.hackerrank.com/contests/sda-ttest-2/challenges/challenge-1636/submissions/code/1387715803)
