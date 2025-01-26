@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    long long N;
+    cin >> N;
+
+    vector<long long> nums(N);
+    for (long long i = 0; i < N; i++) {
+        cin >> nums[i];
+    }
+
+    sort(nums.begin(), nums.end());
+
+    long long Q;
+    cin >> Q;
+
+    for (long long i = 0; i < Q; i++) {
+        long long querie;
+        cin >> querie;
+
+        auto lower = lower_bound(nums.begin(), nums.end(), querie);
+
+        auto upper = upper_bound(nums.begin(), nums.end(), querie);
+
+        if (lower == nums.end() || *lower != querie) {
+            cout << (lower - nums.begin()) << '\n';
+        } 
+        
+        else {
+            cout << (lower - nums.begin()) << ' ' << (upper - nums.begin() - 1) << '\n';
+        }
+    }
+
+    return 0;
+}
