@@ -17,3 +17,6 @@
 # Tree
 * [Профил на дърво](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/challenge-2352/submissions/code/1387724858)
 * [Convert Sorted Array into BST](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/submissions/1521263108/?source=submission-noac)
+
+# Hash
+* [Подмасив](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2854/submissions/code/1387725871)
