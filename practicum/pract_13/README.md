@@ -20,3 +20,4 @@
 
 # Hash
 * [Подмасив](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2854/submissions/code/1387725871)
+* [Dundee The Crocodile](https://www.hackerrank.com/contests/sda-test5-2022-2023-43wdst52/challenges/dundee-the-crocodile/submissions/code/1387726353)
