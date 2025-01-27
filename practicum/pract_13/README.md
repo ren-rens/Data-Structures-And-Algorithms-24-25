@@ -27,3 +27,4 @@
 * [Цикличен граф](https://www.hackerrank.com/contests/sda-exam-27-01-19-/challenges/-1-12/submissions/code/1387726881)
 * [Пътна проверка](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/challenge-2353/submissions/code/1387727109)
 * [Път в граф](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2852/submissions/code/1387762134)
+* [Shortest Tour](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/shortest-tour/submissions/code/1387769603)
