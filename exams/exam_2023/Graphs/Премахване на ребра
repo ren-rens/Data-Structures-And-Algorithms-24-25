@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long V, E;
+std::unordered_map<long long, std::unordered_set<long long>> graph;
+
+void dfsCycle(long long current, std::unordered_map<long long, char>& colours, bool& hasCycle, long long parent) {
+    colours[current] = 'o';
+    
+    for (const auto& nb : graph[current]) {
+        if (nb == parent) {
+            continue;
+        }
+        
+        if (colours[nb] == 'o') {
+            hasCycle = true;
+            continue;
+        }
+        
+        if (colours[nb] == 'c') {
+           continue;
+        }
+        
+        dfsCycle(nb, colours, hasCycle, current);
+   }
+
+    colours[current] = 'c';
+}
+
+long long hasCycle() {
+    std::unordered_map<long long, char> colours;
+    
+    long long counter = 0;
+    bool hasCycle = false;
+    
+    for(auto iter = graph.begin(); iter != graph.end(); iter++) {
+        if(colours.count(iter->first) != 0) {
+            continue;
+        }
+        
+        hasCycle = false;
+        dfsCycle(iter->first, colours, hasCycle, iter->first);
+        
+        if(hasCycle) {
+            counter++;
+        }
+    }
+    
+    return counter;
+}
+
+void solve() {
+    std::cout << hasCycle() << '\n';
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    
+    long long T;
+    std::cin >> T;
+    
+    while(T--) {
+        graph.clear();
+        
+        std::cin >> V >> E;
+        
+        for(long long i = 0; i < V; i++) {
+            graph[i];
+        }
+        
+        long long v1, v2;
+        for(long long i = 0; i < E; i++) {
+            std::cin >> v1 >> v2;
+            
+            graph[v1].insert(v2);
+            graph[v2].insert(v1);
+        }
+        
+        solve();
+    }
+
+    return 0;
+}
