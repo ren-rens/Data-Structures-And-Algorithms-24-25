@@ -29,4 +29,4 @@
 * [Път в граф](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2852/submissions/code/1387762134)
 * [Shortest Tour](https://www.hackerrank.com/contests/sda-2019-2020-exam-2e3nr4rr/challenges/shortest-tour/submissions/code/1387769603)
 * [Зелено училище](https://www.hackerrank.com/contests/sda-2019-2020-test-5/challenges/challenge-2299/submissions/code/1387770788)
-* [Почивка] (https://www.hackerrank.com/contests/test6-sda/challenges/challenge-1760/submissions/code/1387304205)
+* [Почивка](https://www.hackerrank.com/contests/test6-sda/challenges/challenge-1760/submissions/code/1387304205)
