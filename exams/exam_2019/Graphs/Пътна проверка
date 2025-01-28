@@ -1,0 +1,55 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+long long N, M, K;
+std::vector<long long> path;
+
+std::vector<std::vector<long long>> graph(1001, std::vector<long long>(1001, -1));
+
+void input() {
+    std::cin >> N >> M;
+    
+    long long x, y, w;
+    for(long long i = 0; i < M; i++) {
+        std::cin >> x >> y >> w;
+        
+        graph[x][y] = w;
+        graph[y][x] = w;
+    }
+    
+    std::cin >> K;
+    
+    for(long long i = 0; i < K; i++) {
+        long long element;
+        std::cin >> element;
+        
+        path.push_back(element);
+    }
+}
+
+long long findPath() {
+    long long sum = 0;
+    
+    for(long long i = 0; i < K - 1; i++) {
+        if(graph[path[i]][path[i + 1]] == -1) {
+            return -1;
+        }
+        
+        sum += graph[path[i]][path[i + 1]];
+    }
+    
+    return sum;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    
+    input();
+    
+    std::cout << findPath();
+    
+    return 0;
+}
