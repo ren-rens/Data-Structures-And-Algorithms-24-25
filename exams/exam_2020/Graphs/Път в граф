@@ -1,0 +1,83 @@
+#include <vector>
+#include <iostream>
+
+struct UnionFind {
+public:
+    UnionFind(long long size) : parents(size), sizes(size, 1) {
+        for(long long i = 0; i < size; i++) {
+            parents[i] = i;
+        }
+    }
+    
+    bool inOneComponent(long long first, long long second) {
+        return getParent(first) == getParent(second);
+    }
+    
+    void unite(long long first, long long second) {
+        long long parentFirst = getParent(first);
+        long long parentSecond = getParent(second);
+        
+        if(parentFirst == parentSecond) {
+            return;
+        }
+        
+        if(sizes[parentFirst] < sizes[parentSecond]) {
+            std::swap(parentFirst, parentSecond);
+        }
+        
+        parents[parentSecond] = parentFirst;
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+private:
+    std::vector<long long> parents, sizes;
+    
+    long long getParent(long long child) {
+        if(child == parents[child]) {
+            return child;
+        }
+        
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+long long N, M, K; 
+
+void input(UnionFind& uf) {
+    long long x1, x2;
+        
+    for(long long i = 0; i < M; i++) {
+        std::cin >> x1 >> x2;
+        
+        if(uf.inOneComponent(x1 - 1, x2 - 1)) {
+            continue;
+        }
+        
+        uf.unite(x1 - 1, x2 - 1);
+    }
+    
+    std::cin >> K;
+}
+
+void solve(UnionFind& uf) {
+    long long x1, x2;
+    
+    for(long long i = 0; i < K; i++) {
+        std::cin >> x1 >> x2;
+        
+       std::cout << uf.inOneComponent(x1 - 1, x2 - 1) << ' ';
+    }
+}
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    
+    std::cin >> N >> M;
+    
+    UnionFind uf(N + 1);
+    
+    input(uf);
+    
+    solve(uf);
+    
+    return 0;
+}
