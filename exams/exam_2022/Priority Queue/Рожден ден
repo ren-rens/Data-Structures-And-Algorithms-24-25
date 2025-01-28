@@ -1,0 +1,78 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <queue>
+using namespace std;
+
+struct Friend {
+    long long index, arrives, leaves, chairIndex;
+    
+    bool operator<(const Friend& other) const {
+        return arrives > other.arrives;
+    }
+};
+
+struct Guest {
+    long long leaves, chairIndex;
+    
+    bool operator<(const Guest& other) const {
+        return leaves > other.leaves;
+    }
+};
+
+long long N, T;
+
+std::priority_queue<Friend> friends;
+
+void input() {
+    std::cin >> N;
+    
+    long long arrives, leaves;
+    for(long long i = 0; i < N; i++) {
+        std::cin >> arrives >> leaves;
+        
+        friends.push({i, arrives, leaves, -1});
+    }
+    
+    std::cin >> T;
+}
+
+long long findChair() {
+    std::priority_queue<Guest> guests;
+    std::priority_queue<long long, std::vector<long long>, std::greater<long long>> chairs;
+    
+    for(long long i = 0; i < N; i++) {
+        chairs.push(i);
+    }
+    
+    while(!friends.empty()) {
+        auto curFriend = friends.top();
+        friends.pop();
+        
+        while(!guests.empty() && guests.top().leaves <= curFriend.arrives) {
+            chairs.push(guests.top().chairIndex);
+            guests.pop();
+        }
+        
+        curFriend.chairIndex = chairs.top();
+        if(curFriend.index == T) {
+            return curFriend.chairIndex;
+        }
+        
+        guests.push({curFriend.leaves, chairs.top()});
+        chairs.pop();
+        
+    }
+    
+    return -1;
+}
+
+int main() {
+    input();
+        
+    std::cout << findChair();
+    
+    return 0;
+}
