@@ -1,0 +1,83 @@
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+std::vector<long long> times;
+std::unordered_map<long long, long long> bestAt, mostOccurances;
+
+/*
+    bestAt: key-time, value-what is most ordered id
+    mostOccurances: key-id, value-count of occurances
+*/
+
+void input() {
+    long long N;
+    std::cin >> N;
+    
+    long long bestProduct = 0;
+    long long maxOccurances = 0;
+    
+    long long time, id;
+    for(long long i = 0; i < N; i++) {
+        std::cin >> id >> time;
+        
+        times.push_back(time);
+        
+        mostOccurances[id]++;
+        
+        if(mostOccurances[id] >= maxOccurances) {
+            maxOccurances = mostOccurances[id];
+            bestProduct = id;
+        }            
+        
+        bestAt[time] = bestProduct;
+    }
+}
+
+void solve(long long querie) {
+    auto iter = std::upper_bound(times.begin(), times.end(), querie);
+    --iter;
+    
+    std::cout << bestAt[*iter] << '\n';
+}
+
+int main() {  
+    input();
+    
+    long long T;
+    std::cin >> T;
+    
+    long long querie;
+    for(long long i = 0; i < T; i++) {
+        std::cin >> querie;
+        
+        if(querie < times[0]) {
+            std::cout << "-1\n";
+            
+            continue;
+        }
+        
+        solve(querie);
+    }
+    
+    return 0;
+}
