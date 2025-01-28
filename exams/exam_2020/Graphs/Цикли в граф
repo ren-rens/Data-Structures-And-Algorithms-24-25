@@ -1,0 +1,92 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+struct Edge {
+    long long from, to, weight;
+
+    bool operator>(const Edge& other) const {
+        return weight > other.weight;
+    }
+};
+
+struct UnionFind {
+public:
+    UnionFind(long long size) : parents(size), sizes(size, 1) {
+        for (long long i = 0; i < size; i++) {
+            parents[i] = i;
+        }
+    }
+
+    bool inOneComponent(long long first, long long second) {
+        return getParent(first) == getParent(second);
+    }
+
+    void unite(long long first, long long second) {
+        long long parentFirst = getParent(first);
+        long long parentSecond = getParent(second);
+
+        if (parentFirst == parentSecond) {
+            return;
+        }
+
+        if (sizes[parentFirst] < sizes[parentSecond]) {
+            std::swap(parentFirst, parentSecond);
+        }
+
+        parents[parentSecond] = parentFirst;
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+private:
+    std::vector<long long> parents, sizes;
+
+    long long getParent(long long child) {
+        if (child == parents[child]) {
+            return child;
+        }
+
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+long long N = 0, M = 0;
+std::vector<Edge> graph;
+
+long long kruskal() {
+    std::sort(graph.begin(), graph.end(), std::greater<Edge>());
+
+    UnionFind uf(N + 1);
+    long long summary = 0;
+
+    for (long long i = 0; i < M; i++) {
+        if (uf.inOneComponent(graph[i].from, graph[i].to)) {
+            continue;
+        }
+
+        uf.unite(graph[i].from, graph[i].to);
+
+        summary += graph[i].weight;
+    }
+
+    return summary;
+}
+
+int main() {
+    std::cin >> N >> M;
+    long long sumOfAllEdges = 0;
+
+    for (long long i = 0; i < M; i++) {
+        long long v1, v2, w;
+        std::cin >> v1 >> v2 >> w;
+
+        graph.push_back({ v1, v2, w });
+
+        sumOfAllEdges += w;
+    }
+
+    std::cout << sumOfAllEdges - kruskal();
+
+    return 0;
+}
