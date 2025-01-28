@@ -1,0 +1,117 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+
+long long N, M, P;
+std::unordered_map<long long, std::unordered_set<long long>> graph;
+std::unordered_set<long long> forbidden;
+
+std::vector<long long> path;
+
+void input() {
+    std::cin >> N >> M;
+    
+    long long x1, x2;
+    for(long long i = 0; i < M; i++) {
+        std::cin >> x1 >> x2;
+        
+        graph[x1].insert(x2);
+        graph[x2].insert(x1);
+    }
+    
+    std::cin >> P;
+    
+    long long element;
+    for(long long i = 0; i < P; i++) {
+        std::cin >> element;
+        
+        path.push_back(element);
+        
+        forbidden.insert(element);
+    }
+    
+    long long size;
+    std::cin >> size;
+        
+    long long forbidVertex;
+    for(long long i = 0; i < size; i++) {
+        std::cin >> forbidVertex;
+        
+        forbidden.insert(forbidVertex);
+    }
+}
+
+long long findPath(long long start, long long dest) {
+    long long level = 0;
+    
+    std::queue<long long> next;
+    next.push(start);
+    
+    std::unordered_set<long long> visited;
+    visited.insert(start);
+    
+    while(!next.empty()) {
+        long long levelSize = next.size();
+        
+        for(long long i = 0; i < levelSize; i++) {
+            long long current = next.front();
+            next.pop();
+            
+            if(current == dest) {
+                return level;
+            }
+            
+            if(forbidden.count(current) != 0) {
+                continue;
+            }
+            
+            for(const auto& nb : graph[current]) {
+                if(visited.count(nb) != 0) {
+                    continue;
+                }
+                
+                visited.insert(nb);
+                next.push(nb);
+            }
+        }
+        
+        level++;
+    }
+    
+    return -1;
+}
+
+void solve() {
+    long long pathSize = 0;
+    
+    forbidden.erase(path[0]);
+    
+    for(long long i = 1; i < P; i++) {
+        forbidden.erase(path[i]);
+        long long currentPath = findPath(path[i - 1], path[i]);
+        
+        if(currentPath == -1) {
+            std::cout << -1;
+            return;
+        }
+        
+        pathSize += currentPath;
+    }
+    
+    std::cout << pathSize;
+    return;
+}
+
+int main() {
+    
+    input();
+    
+    solve();
+    
+    return 0;
+}
