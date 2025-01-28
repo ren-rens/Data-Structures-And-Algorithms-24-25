@@ -7,3 +7,6 @@
 
 # Linked List
 * [Linked Numbers](https://www.hackerrank.com/contests/exam-2022-part2-sda/challenges/linked-numbers/submissions/code/1387722231)
+
+# Binary Search
+* [Puncakes](https://www.hackerrank.com/contests/exam-2022-part2-sda/challenges/puncakes/submissions/code/1387719034)
