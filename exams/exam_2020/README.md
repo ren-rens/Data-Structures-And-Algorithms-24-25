@@ -7,3 +7,6 @@
 
 ### Hash
 * [Подмасив](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2854/submissions/code/1387725871)
+
+### Linked List
+* [Обръщане на списък](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2853/submissions/code/1387832367)
