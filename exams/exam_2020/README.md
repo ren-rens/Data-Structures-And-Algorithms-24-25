@@ -4,3 +4,6 @@
   
 ### Graphs
 * [Път в граф](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2852/submissions/code/1387762134)
+
+### Hash
+* [Подмасив](https://www.hackerrank.com/contests/exam-2020-02-06-sda/challenges/challenge-2854/submissions/code/1387725871)
