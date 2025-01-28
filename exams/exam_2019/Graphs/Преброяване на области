@@ -1,0 +1,79 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct UnionFind {
+public:
+    UnionFind(long long size) : parents(size), sizes(size, 1) {
+        for(long long i = 0; i < size; i++) {
+            parents[i] = i;
+        }
+    }
+    
+    bool inOneComponent(long long first, long long second) {
+        return getParent(first) == getParent(second);
+    }
+    
+    void unite(long long first, long long second) {
+        long long parentFirst = getParent(first);
+        long long parentSecond = getParent(second);
+        
+        if(parentFirst == parentSecond) {
+            return;
+        }
+        
+        if(sizes[parentFirst] < sizes[parentSecond]) {
+            std::swap(parentFirst, parentSecond);
+        }
+        
+        parents[parentSecond] = parentFirst;
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+private:
+    std::vector<long long> parents, sizes;
+    
+    long long getParent(long long child) {
+        if(child == parents[child]) {
+            return child;
+        }
+        
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+int main() {
+    long long T;
+    std::cin >> T;
+    
+    long long X, Y;
+    for(long long i = 0; i < T; i++) {
+        std::cin >> X >> Y;
+        
+        long long x1, x2;
+        long long componentsCount = X;
+        UnionFind uf(X);
+        
+        for(long long j = 0; j < Y; j++) {
+            std::cin >> x1 >> x2;
+            
+            if(uf.inOneComponent(x1, x2)) {
+                continue;
+            }
+            
+            uf.unite(x1, x2);
+            
+            if(componentsCount == 1) {
+                continue;
+            }
+            
+            componentsCount--;
+        } 
+        
+        std::cout << componentsCount << ' ';
+    }
+    
+    return 0;
+}
