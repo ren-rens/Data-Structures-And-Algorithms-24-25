@@ -1,0 +1,10 @@
+# Tasks
+* [Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
+* [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+* [Binary Search](https://leetcode.com/problems/binary-search/description/)
+* [Sqrt(x)](https://leetcode.com/problems/sqrtx/)
+* [First Bad Version](https://leetcode.com/problems/first-bad-version/description/)
+* [Puncakes](https://www.hackerrank.com/contests/exam-2022-part2-sda/challenges/puncakes/submissions/code/1387719034)
+* [Peak Index in Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/description/)
+* [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
+* [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/)
