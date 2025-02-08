@@ -1,0 +1,110 @@
+#include <bits/stdc++.h>
+#include <unordered_set>
+
+using namespace std;
+
+struct UnionFind{
+public:
+    UnionFind(int vertices): parents(vertices), sizes(vertices){
+        for(int i = 0; i < vertices; i++){
+            parents[i] = i;
+            sizes[i] = 1;
+        }
+    }
+    void uniteComponents(int first, int second){
+        int parentFirst = getParent(first);
+        int parentsSecond = getParent(second);
+        
+        if(parentFirst == parentsSecond){
+            return;
+        }
+        
+        if(sizes[parentFirst] < sizes[parentsSecond]){
+            std::swap(parentFirst, parentsSecond);
+        }
+        
+        parents[parentsSecond] = parentFirst;
+        sizes[parentFirst] += sizes[parentsSecond];
+    }
+    
+    bool inOneComponent(int first, int second){
+        return getParent(first) == getParent(second);
+    }
+private:
+    std::vector<int> parents;
+    std::vector<int> sizes;
+    
+    int getParent(int child){
+        if(child == parents[child]){
+            return child;
+        }
+        
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+struct Edge{
+    int from, to, weight;
+};
+
+std::vector<Edge> fillGraph(const vector<int>& g_from, const vector<int>& g_to, const vector<int>& g_weight){
+    std::vector<Edge> graph;
+    
+    int size = g_from.size();
+    for(int i = 0; i < size; i++){
+        graph.push_back({g_from[i], g_to[i], g_weight[i]});
+        graph.push_back({g_to[i], g_from[i], g_weight[i]});
+    }
+    
+    return graph;
+}
+
+int kruskals(int g_nodes, vector<int> g_from, vector<int> g_to, vector<int> g_weight) {
+    std::vector<Edge> graph = fillGraph(g_from, g_to, g_weight);
+        
+    std::sort(graph.begin(), graph.end(),[]
+    (const Edge& lhs, const Edge& rhs){
+        return lhs.weight < rhs.weight;
+    });
+    
+    int subtree_weight = 0;
+    UnionFind uf(g_nodes);
+        
+    for(long unsigned int i = 0; i < graph.size(); i++){
+        if(uf.inOneComponent(graph[i].from - 1, graph[i].to - 1)){
+            continue;
+        }
+        
+        uf.uniteComponents(graph[i].from - 1, graph[i].to - 1);
+        
+        subtree_weight += graph[i].weight;
+    }
+    
+    return subtree_weight;
+}
+
+int main()
+{
+    int g_nodes, g_edges;
+    std::cin >> g_nodes >> g_edges;
+    
+    std::vector<int> g_from(g_edges);
+    std::vector<int> g_to(g_edges);
+    std::vector<int> g_weight(g_edges);
+    
+    for(int i = 0; i < g_edges; i++){
+        int from, to, weight;
+        std::cin >> from >> to >> weight;
+        
+        g_from[i] = from;
+        g_to[i] = to;
+        g_weight[i] = weight;
+    }
+
+    int res = kruskals(g_nodes, g_from, g_to, g_weight);
+
+    // Write your code here.
+    std::cout << res;
+
+    return 0;
+}
