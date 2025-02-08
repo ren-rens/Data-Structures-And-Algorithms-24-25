@@ -1,2 +1,2 @@
 ### Tasks
-*[Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
+* [Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
