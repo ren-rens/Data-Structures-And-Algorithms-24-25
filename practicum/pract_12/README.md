@@ -1,10 +1,9 @@
 # Kruskal
-### Cleaning
-* https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2801/submissions/code/1387247409
+* [Cleaning](https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2801/submissions/code/1387247409)
 
-### Speed
-* [https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2799
-](https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2799/submissions/code/1387699719)
+* [Speed](https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2799)
+
+(https://www.hackerrank.com/contests/sda-homework-12/challenges/challenge-2799/submissions/code/1387699719)
 
 # Prim
 ### Min Cost to Connect All Points
