@@ -1,0 +1,62 @@
+struct Edge{
+    int to;
+    double weight;
+};
+
+struct Node{
+    int index;
+    double distance;
+
+    bool operator<(const Node& other) const{
+        return distance < other.distance;
+    }
+};
+
+class Solution {
+private:
+    std::unordered_map<int, std::vector<Edge>> graph;
+public:
+    void input_graph(vector<vector<int>>& edges, vector<double>& succProb){
+        for(int i = 0; i < edges.size(); i++){
+            graph[edges[i][0]].push_back({edges[i][1], succProb[i]});
+            graph[edges[i][1]].push_back({edges[i][0], succProb[i]});
+        }
+    }
+
+     double dijkstra(int n, int start_node, int end_node){
+        std::priority_queue<Node> next_to_proccess;
+        next_to_proccess.push({start_node, 1});
+
+        std::vector<double> dist(n, 0);
+        dist[start_node] = 1;
+
+        while(!next_to_proccess.empty()){
+            auto current = next_to_proccess.top();
+            next_to_proccess.pop();
+
+            if(dist[current.index] < current.distance){
+                continue;
+            }
+
+            if(current.index == end_node){
+                return dist[end_node];
+            }
+
+            for(const auto& edge : graph[current.index]){
+                double new_weight = edge.weight * dist[current.index];
+                if(new_weight > dist[edge.to]){
+                    dist[edge.to] = new_weight;
+                    next_to_proccess.push({edge.to, new_weight});
+                }
+            }
+        }
+
+        return dist[end_node];
+    }
+
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
+        input_graph(edges, succProb);
+
+        return dijkstra(n, start_node, end_node);
+    }
+};
