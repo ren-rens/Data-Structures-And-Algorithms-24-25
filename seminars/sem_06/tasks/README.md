@@ -7,3 +7,4 @@
 * [Next Greater Node in Linked List](https://leetcode.com/problems/next-greater-node-in-linked-list/description/)
 * [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 * [Implement Queue Using Stack](https://leetcode.com/problems/implement-queue-using-stacks/submissions/1535806457/)
+* [Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
