@@ -1,0 +1,51 @@
+class Solution {
+public:
+    void takeFromStack(int& number, std::stack<int>& st){
+        number = st.top();
+        st.pop();
+    } 
+
+    int makeOperation(int first, int second, std::string operation){
+        int result = 0;
+
+        if(operation == "+"){
+            result = first + second;
+        }
+        else if(operation == "-"){
+            result = first - second;
+        }
+        else if(operation == "*"){
+            result = first * second;
+        }
+        else{
+            result = first / second;
+        }
+
+        return result;
+    }
+
+    bool validOperations(std::string operation) {
+        return operation == "+" || operation == "-" || operation == "*" || operation == "/";
+    }
+
+    int evalRPN(vector<string>& tokens) {
+        std::stack<int> st;
+        int result;
+
+        for(int i = 0; i < tokens.size(); i++){
+            if(validOperations(tokens[i])){
+                int first, second;
+
+                takeFromStack(second, st);
+                takeFromStack(first, st);
+
+                st.push(makeOperation(first, second, tokens[i]));
+
+                continue;
+            }
+            st.push(stoi(tokens[i]));
+        }
+
+        return st.top();
+    }
+};
