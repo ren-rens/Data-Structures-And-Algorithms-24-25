@@ -17,3 +17,4 @@
 * [Same Tree](https://leetcode.com/problems/same-tree/description/)
 * [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/description/)
 * [BT Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+* [Trim a BST](https://leetcode.com/problems/trim-a-binary-search-tree/description/)
