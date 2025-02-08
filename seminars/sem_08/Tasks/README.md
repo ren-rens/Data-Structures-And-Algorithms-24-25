@@ -11,5 +11,6 @@ Easier
 Harder 
 * [House Robber](https://leetcode.com/problems/house-robber/description/)
 * [Unique Paths II](https://leetcode.com/problems/unique-paths-ii/description/)
-* [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/description/)
 * [Jump Game](https://leetcode.com/problems/jump-game/description/)
+* [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/description/)
+  * ОСНОВНА ЗАДАЧА!!!!!!!!!!
