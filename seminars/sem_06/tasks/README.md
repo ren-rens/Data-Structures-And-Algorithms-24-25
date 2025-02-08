@@ -8,3 +8,4 @@
 * [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 * [Implement Queue Using Stack](https://leetcode.com/problems/implement-queue-using-stacks/submissions/1535806457/)
 * [Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
+* [Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/)
