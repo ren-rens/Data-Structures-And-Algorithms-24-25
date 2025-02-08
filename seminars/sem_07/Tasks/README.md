@@ -7,3 +7,4 @@
 * [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 * [Волейболни другарчета](https://www.hackerrank.com/contests/sda-hw-8/challenges/volleyball-friends/problem)
 * [Search in BST](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
+* [Insert into a BST](https://leetcode.com/problems/insert-into-a-binary-search-tree/description/)
