@@ -1,0 +1,144 @@
+struct UnionFind {
+public:
+    UnionFind(int size) : parents(size), sizes(size, 1) {
+        for(int i = 0; i < size; i++) {
+            parents[i] = i;
+        }
+    }
+
+    bool inOneComponent(int first, int second) {
+        return getParent(first) == getParent(second);
+    }
+
+    void unite(int first, int second) {
+        int parentFirst = getParent(first);
+        int parentSecond = getParent(second);
+
+        if(parentFirst == parentSecond) {
+            return;
+        }
+
+        if(sizes[parentFirst] < sizes[parentSecond]) {
+            std::swap(parentFirst, parentSecond);
+        }
+
+        parents[parentSecond] = parents[parentFirst];
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+
+private:
+    std::vector<int> parents, sizes;
+
+    int getParent(int child) {
+        if(child == parents[child]) {
+            return child;
+        }
+
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+class Solution {
+private:
+    int kruskal(vector<vector<int>>& edges, int n) {
+        int size = edges.size();
+
+        UnionFind uf(n);
+        int mstTree = 0;
+        int componentsCount = n;
+
+        for(const auto& edge : edges) {
+            if(uf.inOneComponent(edge[0], edge[1])) {
+                continue;
+            }
+
+            uf.unite(edge[0], edge[1]);
+            mstTree += edge[2];
+            componentsCount--;
+
+            if(componentsCount <= 1) {
+                    break;
+            }
+        }
+
+        return mstTree;
+    }
+
+    void findCriticalAndPseudoCriticalEdgesRec(int n, vector<vector<int>>& edges, int mstTree, std::vector<std::vector<int>>& result) {
+        int size = edges.size();
+
+        // try what will happen if each edge is removed
+        for(size_t i = 0; i < size; i++) {
+            UnionFind ufWithoutEdge(n);
+            int mstWeightWithoutEdge = 0;
+            int components = n;
+            for(size_t j = 0; j < size; j++) {
+                if(i == j || ufWithoutEdge.inOneComponent(edges[j][0], edges[j][1])) {
+                    continue;
+                }
+
+                mstWeightWithoutEdge += edges[j][2];
+                ufWithoutEdge.unite(edges[j][0], edges[j][1]);
+                components--;
+                if(components == 1) {
+                    break;
+                }
+            }
+
+            // if the weight is changed => critical
+            // if the edge disconnected the graph => critical
+            if(mstWeightWithoutEdge > mstTree || components > 1) {
+                result[0].push_back(edges[i][3]); // pushback index
+            }
+            else {
+                // the edge might be pseudo or not relevant at all
+                UnionFind ufWithEdge(n);
+                ufWithEdge.unite(edges[i][0], edges[i][1]);
+                int mstWeightWithEdge = edges[i][2];
+                int components = n;
+                for(size_t j = 0; j < edges.size(); j++) {
+                    if(i == j || ufWithEdge.inOneComponent(edges[j][0], edges[j][1])) {
+                        continue;
+                    }
+
+                    mstWeightWithEdge += edges[j][2];
+                    ufWithEdge.unite(edges[j][0], edges[j][1]);
+                    components--;
+                    if(components == 1) {
+                        break;
+                    }
+                }
+  
+                // If the weight is the same => this edge is part of atleast one mst
+                if (mstWeightWithEdge == mstTree) {
+                    result[1].push_back(edges[i][3]);
+                }
+            }
+        }
+    }
+
+public:
+    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+        int size = edges.size();
+
+        // add index to every edge, because we will sort them by weight...
+        for(size_t i = 0; i < size; i++) {
+            edges[i].push_back(i);
+        }
+
+        std::sort(edges.begin(), edges.end(), []
+        (const vector<int>& l, const vector<int>& r) {
+            return l[2] < r[2];
+        });
+
+        int mstTree = kruskal(edges, n);
+
+         // result[0] => critical[]
+        // result[1] => pseudo[]
+        std::vector<std::vector<int>> result(2, std::vector<int>());
+
+        findCriticalAndPseudoCriticalEdgesRec(n, edges, mstTree, result);
+
+        return result;
+    }
+};
