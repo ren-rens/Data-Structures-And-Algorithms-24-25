@@ -1,0 +1,73 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_set>
+#include <unordered_map>
+using namespace std;
+
+bool dfs(std::unordered_map<long long, std::unordered_set<long long>>& graph, std::unordered_map<long long, char>& colours, long long current) {
+    colours[current] = 'o'; //open
+    
+    for(const auto& neighbour : graph[current]) {
+        if(colours[neighbour] == 'c') {
+            continue; //closed
+        }
+        
+        if(colours[neighbour] == 'o') {
+            return true; //open -> hasCycle
+        }
+        
+        if(dfs(graph, colours, neighbour)) {
+            return true;
+        }
+    }
+    
+    colours[current] = 'c'; //closed
+    
+    return false;
+}
+
+bool hasCycle(std::unordered_map<long long, std::unordered_set<long long>>& graph) {
+    std::unordered_map<long long, char> colours;
+    
+    for(auto iter = graph.begin(); iter != graph.end(); iter++) {
+        if(colours.count(iter->first) != 0) {
+            continue;
+        }
+        
+        if(dfs(graph, colours, iter->first)) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    long long N;
+    std::cin >> N;
+    
+    long long V, E;
+    for(long long i = 0; i < N; i++) {
+        std::cin >> V >> E;
+        
+        std::unordered_map<long long, std::unordered_set<long long>> graph;
+        for(long long j = 1; j <= V; j++) {
+            graph[j];
+        }
+        
+        long long v1, v2, w;
+        for(long long j = 0; j < E; j++) {
+            std::cin >> v1 >> v2 >> w;
+            
+            graph[v1].insert(v2);
+        }
+        
+        std::cout << (hasCycle(graph) ? "true " : "false ");
+    }
+    
+    return 0;
+}
