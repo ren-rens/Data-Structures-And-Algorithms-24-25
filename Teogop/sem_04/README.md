@@ -1,7 +1,7 @@
 # Linked Lists
 * [Remove Duplicates From Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/submissions/1515933154/)
 
-* [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/submissions/1515939196/(
+* [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/submissions/1515939196/)
 
 * [Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/1515943187/)
 
