@@ -1,0 +1,156 @@
+#include <bits/stdc++.h>
+#include <queue>
+#include <unordered_set>
+#include <unordered_map>
+
+using namespace std;
+
+struct Edge{
+    int from, to, weight;
+    
+    bool operator< (const Edge& other) const{
+        return weight > other.weight;
+    }
+};
+
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
+
+/*
+ * Complete the 'prims' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. 2D_INTEGER_ARRAY edges
+ *  3. INTEGER start
+ */
+std::unordered_map<int, std::vector<Edge>> fillGraph(const vector<vector<int>>& edges){
+    std::unordered_map<int, std::vector<Edge>> graph;
+    
+    for(const auto& edge : edges){
+        graph[edge[0]].push_back({edge[0], edge[1], edge[2]});
+        graph[edge[1]].push_back({edge[1], edge[0], edge[2]});
+    }
+    
+    return graph;
+}
+int prims(int n, vector<vector<int>> edges, int start) {
+    std::unordered_map<int, std::vector<Edge>> graph = fillGraph(edges);
+    
+    std::priority_queue<Edge> pq;
+    pq.push({start, start, 0});
+    
+    std::vector<Edge> minimum_subtree;
+    int subtree_weight = 0;
+    
+    std::unordered_set<int> visited;
+    
+    while(!pq.empty() && minimum_subtree.size() < (long unsigned int)n){
+        auto current = pq.top();
+        pq.pop();
+        
+        if(visited.count(current.to) != 0){
+            continue;
+        }
+        
+        visited.insert(current.to);
+        
+        subtree_weight += current.weight;
+        
+        minimum_subtree.push_back(current);
+        
+        for(auto& neighbour : graph[current.to]){
+            if(visited.count(neighbour.to)){
+                continue;
+            }
+            pq.push(neighbour);
+        }
+    }
+    
+    return subtree_weight;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
+
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+    int n = stoi(first_multiple_input[0]);
+
+    int m = stoi(first_multiple_input[1]);
+
+    vector<vector<int>> edges(m);
+
+    for (int i = 0; i < m; i++) {
+        edges[i].resize(3);
+
+        string edges_row_temp_temp;
+        getline(cin, edges_row_temp_temp);
+
+        vector<string> edges_row_temp = split(rtrim(edges_row_temp_temp));
+
+        for (int j = 0; j < 3; j++) {
+            int edges_row_item = stoi(edges_row_temp[j]);
+
+            edges[i][j] = edges_row_item;
+        }
+    }
+
+    string start_temp;
+    getline(cin, start_temp);
+
+    int start = stoi(ltrim(rtrim(start_temp)));
+
+    int result = prims(n, edges, start);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
