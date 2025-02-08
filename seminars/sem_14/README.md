@@ -1,3 +1,4 @@
+# [Preparation Quizz](https://quizizz.com/admin/quiz/63b6032ee105dc001da0512e/exam-preparation)
 # Ойлеров и Хамилтонов път в граф
 
 ## Днес ще разгледаме
