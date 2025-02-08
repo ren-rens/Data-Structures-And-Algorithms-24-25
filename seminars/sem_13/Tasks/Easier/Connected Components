@@ -1,0 +1,67 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct UnionFind{
+public:
+    UnionFind(int v) : parents(v), sizes(v, 1){
+        for(int i = 0; i < v; i++){
+            parents[i] = i;
+        }
+    }
+    
+    bool inOneComponent(int first, int second){
+        return getParent(first) == getParent(second);
+    }
+    
+    void unite(int first, int second){
+        int parentFirst = getParent(first);
+        int parentSecond = getParent(second);
+        
+        if(parentFirst == parentSecond){
+            return;
+        }
+        
+        if(sizes[parentFirst] < sizes[parentSecond]){
+            std::swap(parentFirst, parentSecond);
+        }
+        
+        parents[parentSecond] = parentFirst;
+        sizes[parentFirst] += sizes[parentSecond];
+    }
+private:
+    std::vector<int> parents, sizes;
+    
+    int getParent(int child){
+        if(child == parents[child]){
+            return child;
+        }
+        
+        return parents[child] = getParent(parents[child]);
+    }
+};
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int N;
+    std::cin >> N;
+    
+    UnionFind uf(N);
+    int x, y;
+    int components = N;
+    
+    while( std::cin >> x >> y){
+        if(uf.inOneComponent(x, y)){
+            std::cout << components << " CYCLE FORMED!\n"; 
+            continue;
+        }
+        uf.unite(x, y);
+        components--;
+        std::cout << components << '\n';
+    }
+
+    return 0;
+}
