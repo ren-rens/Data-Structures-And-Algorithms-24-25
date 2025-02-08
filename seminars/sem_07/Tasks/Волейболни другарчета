@@ -1,0 +1,32 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int m = 0;
+    std::cin >> m;
+    
+    int N = 0;
+    std::cin >> N;
+    
+    std::unordered_set<int> friends;
+    friends.insert(m);
+    
+    for(int i = 0; i < N; i++) {
+        int f1 = 0, f2 = 0;
+        std::cin >> f1 >> f2;
+        
+        if(friends.count(f1) != 0) {
+            friends.insert(f2);
+        }
+    }
+    
+    std::cout << friends.size();
+    
+    return 0;
+}
