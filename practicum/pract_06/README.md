@@ -2,9 +2,7 @@
 
 [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/1452702099/)
 
-[Maximum Depth of Binary Tree](ttps://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/1452716876/)
-
-[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/submissions/1517945667/)
+[Maximum Depth of N-ary Tree]([https://leetcode.com/problems/maximum-depth-of-n-ary-tree/submissions/1517945667/](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/description/))
 
 [Merge Similar Items](https://leetcode.com/problems/merge-similar-items/)
 
