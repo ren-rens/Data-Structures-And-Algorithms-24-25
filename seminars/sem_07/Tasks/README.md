@@ -9,5 +9,5 @@
 * [Search in BST](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
 * [Insert into a BST](https://leetcode.com/problems/insert-into-a-binary-search-tree/description/)
 * [Delete Node in a BST](https://leetcode.com/problems/delete-node-in-a-bst/description/)
-* Traversals (първите 3 "невидимо" ползват стек): 
-+++ [inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+* Traversals (първите 3 "невидимо" ползват стек):
+* * [inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
