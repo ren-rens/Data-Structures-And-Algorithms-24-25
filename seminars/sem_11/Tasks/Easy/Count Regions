@@ -1,0 +1,70 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+using namespace std;
+
+void dfs(std::unordered_map<long long, std::unordered_set<long long>> &graph, std::unordered_set<int>& visited, long long current)
+{
+    visited.insert(current);
+    
+    for(auto& neighbour : graph[current])
+    {
+        if(!visited.count(neighbour))
+        {
+            dfs(graph, visited, neighbour);
+        }
+    }
+}
+long long regions_count(std::unordered_map<long long, std::unordered_set<long long>> &graph, long long towns_count)
+{
+    std::unordered_set<int> visited;
+    
+    long long count = 0;
+    
+    for(long long i = 0; i < towns_count; i++)
+    {
+        if(!visited.count(i))
+        {
+            count++;
+            dfs(graph, visited, i);
+        }
+    }
+    
+    return count;
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    
+    long long test_count = 0;
+    std::cin >> test_count;
+    
+    for(long long i = 0; i < test_count; i++)
+    {
+        long long towns_count = 0;
+        long long paths_count = 0;
+        std::cin >> towns_count >> paths_count;
+        
+        std::unordered_map<long long, std::unordered_set<long long>> graph;
+        
+        //create graph
+        for(long long j = 0; j < paths_count; j++)
+        {
+            long long first, second;
+            std::cin >> first >> second;
+            
+            graph[first].insert(second);
+            graph[second].insert(first);
+        }
+        
+        long long regions = regions_count(graph, towns_count);
+        
+        std::cout << regions << ' '; 
+    }
+    
+    return 0;
+}
