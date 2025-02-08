@@ -1,0 +1,56 @@
+class Solution {
+private:
+    TreeNode* findNewRoot(TreeNode* iter) {
+        // Find the smallest value in the right subtree
+        while(iter && iter->left) {
+            iter = iter->left;
+        }
+        return iter;
+    }
+    
+    TreeNode* _delete(TreeNode* current, int key) {
+        if (!current) {
+            return nullptr;
+        }
+        
+        // Traverse the tree to find the node to delete
+        if (key < current->val) {
+            current->left = _delete(current->left, key);
+        } 
+        else if (key > current->val) {
+            current->right = _delete(current->right, key);
+        }
+        else {
+            if (!current->left && !current->right) {
+                // Case 1: No children
+                delete current;
+                return nullptr;
+            } 
+            else if (!current->left) {
+                // Case 2: Only right child
+                TreeNode* temp = current->right;
+                delete current;
+                return temp;
+            }
+             else if (!current->right) {
+                // Case 3: Only left child
+                TreeNode* temp = current->left;
+                delete current;
+                return temp;
+            }
+             else {
+                // Case 4: Two children
+                TreeNode* newRoot = findNewRoot(current->right); // Find in-order successor
+                current->val = newRoot->val;
+                current->right = _delete(current->right, newRoot->val);
+            }
+        }
+
+        return current;
+    }
+
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        return _delete(root, key);
+    }
+};
