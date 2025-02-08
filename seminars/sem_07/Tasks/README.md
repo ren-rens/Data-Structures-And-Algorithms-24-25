@@ -11,3 +11,6 @@
 * [Delete Node in a BST](https://leetcode.com/problems/delete-node-in-a-bst/description/)
 * Traversals (първите 3 "невидимо" ползват стек):
   * [inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+  * [postorder](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+  * [preorder](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+  * [level order](https://leetcode.com/problems/binary-tree-level-order-traversal/)
