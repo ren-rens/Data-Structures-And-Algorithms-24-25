@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        std::vector<int> result(temperatures.size(), 0);
+        std::stack<int> maxMonotonicValues;
+
+        for(int i = 0; i < temperatures.size(); i++) {
+            int days = 0;
+
+            while(!maxMonotonicValues.empty() && temperatures[maxMonotonicValues.top()] < temperatures[i]){
+                result[maxMonotonicValues.top()] = i - maxMonotonicValues.top();
+                maxMonotonicValues.pop();
+            }
+            maxMonotonicValues.push(i);
+        }
+
+        return result;
+    }
+};
