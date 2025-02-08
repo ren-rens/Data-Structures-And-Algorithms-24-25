@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
+
+using namespace std;
+
+
+void dfs(long long current, unordered_set<long long>& visited, unordered_map<long long, vector<long long>>& graph) {
+    visited.insert(current);
+
+    for (const auto& nb : graph[current]) {
+        if (visited.count(nb) == 0) {
+            dfs(nb, visited, graph);
+        }
+    }
+}
+
+bool isConnected(unordered_map<long long, vector<long long>>& graph, long long N) {
+    unordered_set<long long> visited;
+    long long start_node = -1;
+
+    for (const auto& node : graph) {
+        if (!node.second.empty()) {
+            start_node = node.first;
+            break;
+        }
+    }
+    if (start_node == -1) return true; // No edges in the graph
+
+    dfs(start_node, visited, graph);
+
+    return visited.size() == static_cast<size_t>(N);
+}
+
+string checkEuler(unordered_map<long long, vector<long long>>& graph, long long N) {
+    vector<long long> degrees(N + 1, 0);
+
+    for (const auto& edge : graph) {
+        degrees[edge.first] += edge.second.size();
+    }
+
+    long long oddDegrees = 0;
+    for (const auto& degree : degrees) {
+        if (degree % 2 != 0) {
+            oddDegrees++;
+        }
+    }
+
+    if (!isConnected(graph, N)) {
+        return "none";
+    }
+    if (oddDegrees == 2) {
+        return "epath";
+    }
+    if (oddDegrees == 0) {
+        return "ecycle";
+    }
+    return "none";
+}
+
+void solve() {
+    long long N, M;
+    cin >> N >> M;
+
+    unordered_map<long long, vector<long long>> graph;
+
+    long long A, B;
+    for (long long i = 0; i < M; i++) {
+        cin >> A >> B;
+
+        graph[A].push_back(B);
+        graph[B].push_back(A);
+    }
+
+    string res = checkEuler(graph, N);
+
+    cout << res << '\n';
+}
+
+int main() {
+    int Q;
+    cin >> Q;
+    for (int i = 0; i < Q; ++i) {
+        solve();
+    }
+
+    return 0;
+}
