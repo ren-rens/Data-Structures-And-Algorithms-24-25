@@ -1,0 +1,55 @@
+struct Edge{
+    int from, to, weight;
+
+    bool operator<(const Edge& other) const{
+        return weight > other.weight;
+    }
+};
+
+class Solution {
+private:
+
+    int get_value(int x1, int y1, int x2, int y2){
+        return std::abs(x1 - x2) + std::abs(y1 - y2);
+    }
+
+    int prim(int N, vector<vector<int>>& points){
+        std::priority_queue<Edge> pq;
+        if(points.size() > 1){
+            pq.push({0, 0, 0});
+        }
+
+        int minimum_tree_weight = 0;
+
+        std::unordered_set<int> visited;
+
+        while(!pq.empty() && visited.size() < N){
+            auto current = pq.top();
+            pq.pop();
+
+            if(visited.count(current.to) != 0){
+                continue;
+            }
+
+            visited.insert(current.to);
+
+            minimum_tree_weight += current.weight;
+            
+            for(int i = 0; i < N; i++){
+                if(visited.count(i) != 0){
+                    continue;
+                }
+                int weight = get_value(points[i][0], points[i][1], points[current.to][0], points[current.to][1]);
+                pq.push({current.to, i, weight});
+            }
+        }
+
+        return minimum_tree_weight;
+    }
+public:
+    int minCostConnectPoints(vector<vector<int>>& points) {
+        int size = points.size();
+
+        return prim(size, points);
+    }
+};
