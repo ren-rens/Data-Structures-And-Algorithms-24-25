@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> stack;
+        
+        for(int i = 0; i < asteroids.size(); i++)
+        {
+            bool destroyed = false;
+
+            while(!stack.empty() && asteroids[i] < 0 && stack.top() > 0) // when we have to opposite moving asteroids
+            {
+                if(stack.top() < -asteroids[i])
+                {
+                    stack.pop();
+                    continue;
+                }
+                if (stack.top() == -asteroids[i])
+                {
+                    stack.pop();
+                }
+                destroyed = true;
+                break;
+            }
+
+            if(!destroyed)
+            {
+                stack.push(asteroids[i]);
+            }
+        }
+
+        vector<int> result(stack.size());
+        for (int i = stack.size() - 1; i >= 0; --i) 
+        {
+            result[i] = stack.top();
+            stack.pop();
+        }
+        return result;
+    }
+};
