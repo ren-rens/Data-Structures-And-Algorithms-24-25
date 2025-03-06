@@ -16,7 +16,8 @@
 * [kruskal](https://www.hackerrank.com/contests/sda-2021-2022-test-6-christmas/challenges/challenge-2852/problem)
 * може и с dfs
 
-### [Суеверия](https://www.hackerrank.com/contests/sda-2021-2022-test-7-final/challenges/challenge-2817/problem)
+### Суеверия
+* [direct](https://www.hackerrank.com/contests/sda-2021-2022-test-7-final/challenges/challenge-2817/problem)
 
 ### Агенция Пътна Инфраструктура
 * [dfs](https://www.hackerrank.com/contests/test7-sda-soft-eng/challenges/challenge-1771/problem)
